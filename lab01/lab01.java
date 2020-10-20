@@ -1,3 +1,5 @@
+package lab01;
+
 public class lab01 {
     private static final int STEPS_LINE = 20;
     private static final double STEP_ANGLE = 0.05;
