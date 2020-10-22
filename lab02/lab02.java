@@ -1,26 +1,16 @@
-package lab02;
-
-import java.util.Random;
-import java.util.ArrayList;
-
-class RandomArrayGenerator {
-    public static ArrayList<Integer> generate(int size) {
-        Random r = new Random();
-         var res = new ArrayList<Integer>(size);
-         for (Integer i: res) {
-             i = r.nextInt(50);
-         }
-         return res;
-    }
-}
-
-public class lab02 {
-
-    static ArrayList<Integer> list = new ArrayList<Integer>(10);
-    public static void main(String[] args) {
-        var list = RandomArrayGenerator.generate(10);
-        for (var i: list) {
-            System.out.println(i);
-        }
-    }
+//tego pliku nie wolno zmieniać!!!
+public class lab02
+{
+ public static void main(String args[])
+ {
+  //Rnd(N,k) 
+//   N  ilość liczb
+  //k - każda (z tych 'N') jest sumą 'k' liczb losowych z przedziału <0;1.0)
+  Rnd x=new Rnd(10,100);
+  x.Print();
+  System.out.println("minimum = "+x.Min());
+  System.out.println("maksimum = "+x.Max());
+  System.out.println("avg = "+x.Average());
+  x.Draw();
+ }
 }
