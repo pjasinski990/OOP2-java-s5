@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Game {
-    enum Preset {
+    public static enum Preset {
         RANDOM, BOAT, BLINKER, GLIDER
     }
 
