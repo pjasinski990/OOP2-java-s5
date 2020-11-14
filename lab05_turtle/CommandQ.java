@@ -1,3 +1,7 @@
+/**
+ * Class that implements FIFO queue for turtle commands.
+ * Automatically repeats commands that are enclosed in REPEAT ... NEXT
+ */
 public class CommandQ {
     private class CommandNode {
         CommandNode(Command c) {
@@ -13,6 +17,10 @@ public class CommandQ {
     private boolean repeating = false;
     private int repeatCount = 0;
 
+    /**
+     * Enqueues new command
+     * @param comm command to be enqueued
+     */
     public void enQ(Command comm) {
         CommandNode newNode = new CommandNode(comm);
         if (head == null) {
@@ -26,6 +34,12 @@ public class CommandQ {
         tail = newNode;
     }
 
+    /**
+     * Dequeues next command. Checks for existence of REPEAT blocks
+     * and repeats enclosed commands as needed.
+     *
+     * @return Command next command in the queue, null if empty
+     */
     public Command deQ() {
         if (head == null) {
             return null;
@@ -50,7 +64,7 @@ public class CommandQ {
         return result;
     }
 
-    public void goBack(int steps) {
+    private void goBack(int steps) {
         for(int i = 0; i < steps; i++) {
             head = head.prev;
         }

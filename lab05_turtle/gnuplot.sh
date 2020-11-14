@@ -1,4 +1,4 @@
 set term pngcairo
-set output 'a.png'
+set output 'image.png'
 
 plot 'data.dat' w lp

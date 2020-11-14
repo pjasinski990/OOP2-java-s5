@@ -1,5 +1,13 @@
+/**
+ * Class used for parsing text input to turtle commands.
+ */
 public class CommandParser {
-    Command parseCommand(String line) {
+    /**
+     * Tries to parse the passed line of text to turtle command.
+     * @param line line to be parsed
+     * @return resulting command if successful, null otherwise
+     */
+    public Command parseCommand(String line) {
         String[] arr = line.split(" ");
         CommandType type;
         int x = 0;

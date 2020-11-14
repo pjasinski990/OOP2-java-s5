@@ -1,6 +1,8 @@
+/**
+ * Class that contains data required to execute a command by a turtle.
+ */
 public class Command {
-
-    Command(CommandType type, int x) {
+    public Command(CommandType type, int x) {
         this.type = type;
         this.x = x;
     }
@@ -10,7 +12,11 @@ public class Command {
 
 enum CommandType {
     DRAW, MOVE, RIGHT, LEFT, REPEAT, NEXT, HOME, END;
-    boolean requiresNumber() {
+    /**
+     * Checks if enum type command requires an argument to be executed.
+     * @return resulting logical value
+     */
+    public boolean requiresNumber() {
         return !(this == NEXT || this == HOME || this == END);
     }
 }
