@@ -85,22 +85,27 @@ public class Store {
     private void showSellProductMenu() {
         System.out.println("Wybierz produkt do sprzedania: ");
         int i = 1;
-        for (Product item: products) {
-            System.out.println(i++ + ") " + item.name + ", cena: " + item.priceSell);
+        if (products.isEmpty()) {
+            System.out.println("Nie ma produktow do sprzedania");
         }
-        Scanner s = new Scanner(System.in);
-        int select = s.nextInt() - 1;
-        balance += products.get(select).sell();
-        products.remove(select);
+        else {
+            for (Product item: products) {
+                System.out.println(i++ + ") " + item.name + ", cena: " + item.priceSell);
+            }
+            Scanner s = new Scanner(System.in);
+            int select = s.nextInt() - 1;
+            balance += products.get(select).sell();
+            products.remove(select);
+        }
     }
 
     private void endDay() {
         System.out.printf("Koniec dnia %d\n\n", date);
         for (int i = 0; i < products.size(); i++) {
             Product item = products.get(i);
-            if (item.doesSpoil && item.freshness >= 0) {
+            if (item.doesSpoil && item.freshness > 0) {
                 --item.freshness;
-                if (item.freshness < 0) {
+                if (item.freshness == 0) {
                     balance -= item.priceBuy;
                     products.remove(i);
                     --i;
