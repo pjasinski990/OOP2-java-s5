@@ -33,7 +33,7 @@ interface TwoArgsOperable {
 }
 
 class Add {
-    double add(int val1, int... args) {
+    void add(int val1, int... args) {
         int res = val1;
         StringBuilder sb = new StringBuilder(Integer.toString(val1));
         for (var d: args) {
@@ -42,7 +42,6 @@ class Add {
         }
         sb.append("=").append(res);
         System.out.println(sb.toString());
-        return res;
     }
 }
 
