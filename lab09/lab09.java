@@ -19,14 +19,14 @@ final class Garden {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
 
-        data = new int[sizeX][sizeY];
+        data = new int[sizeX+1][sizeY+1];
         this.n = n;
     }
 
     public void digAreas(ArrayList<Point> startPoints, ArrayList<Point> endPoints) {
         for (int k = 0; k < n; ++k) {
-            for (int i = startPoints.get(k).getX(); i < endPoints.get(k).getX(); ++i) {
-                for (int j = startPoints.get(k).getY(); j < endPoints.get(k).getY(); ++j) {
+            for (int i = startPoints.get(k).getX(); i <= endPoints.get(k).getX(); ++i) {
+                for (int j = startPoints.get(k).getY(); j <= endPoints.get(k).getY(); ++j) {
                     data[i][j]++;
                 }
             }
@@ -35,9 +35,9 @@ final class Garden {
 
     public int getUnreadyCount() {
         int count = 0;
-        for (int i = 0; i < sizeX; ++i) {
-            for (int j = 0; j < sizeY; ++j) {
-                if (data[i][j] >= n-1) {
+        for (int i = 0; i <= sizeX; ++i) {
+            for (int j = 0; j <= sizeY; ++j) {
+                if (data[i][j] < n-1) {
                     count++;
                 }
             }
@@ -71,10 +71,10 @@ public class lab09 {
                 endPoints.add(new Point(x2, y2));
             }
 
-            int maxX = endPoints.stream().max(Comparator.comparingInt(Point::getX)).get().getX();
-            int maxY = endPoints.stream().max(Comparator.comparingInt(Point::getY)).get().getY();
+            Point maxXPoint = endPoints.stream().max(Comparator.comparingInt(Point::getX)).orElse(new Point(0, 0));
+            Point maxYPoint = endPoints.stream().max(Comparator.comparingInt(Point::getY)).orElse(new Point(0, 0));
 
-            Garden g = new Garden(maxX, maxY, n);
+            Garden g = new Garden(maxXPoint.getX(), maxYPoint.getY(), n);
             g.digAreas(startPoints, endPoints);
             System.out.println(g.getUnreadyCount());
 
