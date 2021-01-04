@@ -12,6 +12,7 @@ public class Stos<T> {
     public void push(T item) {
         Node<T> newNode = new Node<>(item);
         newNode.next = top;
+
         top = newNode;
     }
 
